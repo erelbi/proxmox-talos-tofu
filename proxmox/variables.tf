@@ -22,12 +22,12 @@ variable "proxmox_storage_device" {
 
 variable "talos_version" {
   type    = string
-  default = "1.11.6"
+  default = "1.12.1"
 }
 
 variable "kubernetes_version" {
   type    = string
-  default = "1.34.2"
+  default = "1.35.0"
 }
 
 
@@ -66,7 +66,7 @@ variable "cluster_name" {
 variable "cluster_vip_shared_ip" {
   description = "Shared virtual IP address for control plane nodes"
   type        = string
-  default     = "10.254.134.10"
+  default     = "192.168.134.10"
 }
 
 variable "node_data" {
@@ -85,13 +85,13 @@ variable "node_data" {
   })
   default = {
     controlplanes = {
-      "10.254.134.11" = {
+      "192.168.134.11" = {
         install_disk  = "/dev/vda"
         install_image = "factory.talos.dev/openstack-installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.12.1"
       },
     }
     workers = {
-      "10.254.134.20" = {
+      "192.168.134.20" = {
         install_disk  = "/dev/vda"
         install_image = "factory.talos.dev/openstack-installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.12.1"
       },
@@ -102,19 +102,19 @@ variable "node_data" {
 variable "network" {
   description = "Network for all nodes"
   type        = string
-  default     = "10.254.134.0/24"
+  default     = "192.168.134.0/24"
 }
 
 variable "network_gateway" {
   description = "Network gateway for all nodes"
   type        = string
-  default     = "10.254.134.1"
+  default     = "192.168.134.1"
 }
 
 variable "domain_name_server" {
   description = "DNS for all nodes"
   type        = string
-  default     = "10.101.30.249"
+  default     = "1.1.1.1"
 }
 
 variable "vlan_tag" {

@@ -16,7 +16,3 @@ variable "cilium_load_balancer_ip_range_stop" {
   type = string
 }
 
-variable "argocd_domain" {
-  type = string
-}
-
