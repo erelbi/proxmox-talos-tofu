@@ -1,0 +1,35 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gitops-manifests
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://gitlab.com/test/k8s/gitops/test-k8s
+  ref:
+    branch: main
+  secretRef:
+    name: gitops-token
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: gitops-kustomization
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./manifests/talos-test
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: gitops-manifests
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitops-gitlab-token
+  namespace: flux-system
+type: Opaque
+data:
+  password: Z**************************=
+  username: Z**********************= 

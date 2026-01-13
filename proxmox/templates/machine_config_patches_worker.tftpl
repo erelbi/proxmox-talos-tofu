@@ -1,0 +1,25 @@
+machine:
+  features:
+    hostDNS:
+      forwardKubeDNSToHost: false
+  install:
+    disk: ${install_disk}
+    image: ${install_image}
+  network:
+    hostname: ${hostname}
+    nameservers:
+      - ${dns}
+    interfaces:
+      - deviceSelector:
+          physical: true
+        addresses:
+          - ${ip_address}
+        routes:
+          - network: ${network}
+            gateway: ${network_gateway}
+cluster:
+  network:
+    podSubnets:
+      - ${pod_cidr}
+    serviceSubnets:
+      - ${service_cidr}
